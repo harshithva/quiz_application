@@ -1,5 +1,6 @@
 const initialState = {
     NewQuestionmodalOpened : false,
+    NewImportmodalOpened : false,
     AllQuestionconfirmDirty: false,
     QuestionsearchText : '',
     QuestionTableLoading : false, 
@@ -23,6 +24,12 @@ export default (state = initialState, action )=>{
                 ...state,
                 NewQuestionmodalOpened : action.payload1,
             }
+            case 'CHANGE_QUESTION_IMPORT_MODAL_STATE':
+                return {
+                    ...state,
+                    NewImportmodalOpened : action.payload1,
+                }
+
         case 'CHANGE_QUESTION_FORM_CONFIRMDIRTY':
             return {
                 ...state,

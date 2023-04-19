@@ -9,6 +9,13 @@ export const ChangeQuestionModalState = (d1)=> dispatch =>{
         })
     }
     
+export const ChangeQuestionImportModalState = (d1)=> dispatch =>{
+        dispatch({
+            type : 'CHANGE_QUESTION_IMPORT_MODAL_STATE',
+            payload1 : d1,
+        })
+    }
+    
 
 export const ChangeQuestionConfirmDirty = (d)=> dispatch =>{
     dispatch({

@@ -4,6 +4,7 @@ import Highlighter from 'react-highlight-words';
 import { connect } from 'react-redux';
 import { 
   ChangeQuestionModalState,
+  ChangeQuestionImportModalState,
   ChangeQuestionTableData,
   ChangeQuestionSearchText,
   ChangeSelectedSubjects
@@ -18,14 +19,15 @@ import apis from '../../../services/Apis';
 import NewQuestionForm from '../newquestion/newquestion';
 import QuestionDetails from '../questionDetails/questiondetails';
 
-
+import ImportQuestion from "./ImportQuestion";
 
 class AllQuestions extends Component {
   constructor(props){
     super(props);
     this.state={
       questiondetailsId : null,
-      questiondetailsModelVisible:false
+      questiondetailsModelVisible:false,
+      importModalVisible: false
     }
   }
   OpendetailsModal = (id)=>{
@@ -52,6 +54,13 @@ class AllQuestions extends Component {
 
   openNewModal = (mode)=>{
     this.props.ChangeQuestionModalState(true);
+  }
+
+  openQuestionImportModal = () => {
+    this.props.ChangeQuestionImportModalState(true);
+  }
+  closeQuestionImportModal = () => {
+    this.props.ChangeQuestionImportModalState(false);
   }
 
   closeNewModal = ()=>{
@@ -195,6 +204,9 @@ class AllQuestions extends Component {
                     <Button type="primary" icon="question-circle" style={{marginBottom:'10px'}} onClick={()=>this.openNewModal('Add New Question')}>
                       Add New Question
                     </Button>
+                    <Button type="secondary" icon="question-circle" style={{marginBottom:'10px',leftMargin:'10px'}}   onClick={()=>this.openQuestionImportModal('Import Question')}>
+                      Import Question
+                    </Button>
                   </Col>
                   <Col span={12}>
                     <Select
@@ -250,6 +262,17 @@ class AllQuestions extends Component {
               >
                 <QuestionDetails id={this.state.questiondetailsId} / >
               </Modal>
+              <Modal
+                visible={this.props.trainer.NewImportmodalOpened}
+                title="Import Question"
+                onCancel={this.closeQuestionImportModal}
+                style={{top :'20px',padding:'0px',backgroundColor:'rgb(155,175,190)'}}
+                width="70%"
+                destroyOnClose={true}
+                footer={[]}
+              >
+               <ImportQuestion/>
+              </Modal>
 
             </div>
         )
@@ -263,8 +286,9 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps,{
   ChangeQuestionModalState,
+  ChangeQuestionImportModalState,
   ChangeQuestionTableData,
   ChangeQuestionSearchText,
   ChangeSelectedSubjects,
-  ChangeSubjectTableData
+  ChangeSubjectTableData,
 })(AllQuestions);

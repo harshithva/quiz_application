@@ -34,6 +34,20 @@ export const SecurePost =(p)=>{
         }
     })
 }
+export const SecurePostWithFile =(p)=>{
+    return axios({
+        method:'post',
+        baseURL : apis.BASE,
+        ...p,
+        params: {
+            ...p.params,
+            Token : auth.retriveToken()
+        },
+              headers: {
+                'Content-Type': 'multipart/form-data'
+      },
+    })
+}
 
 export const Post =(p)=>{
     return axios({

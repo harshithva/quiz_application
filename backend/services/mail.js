@@ -2,18 +2,18 @@ const nodemailer = require("nodemailer");
 var config = require('config');
 
 let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: "smtp.hostinger.com",
     port: 465,
     secure: true,
     auth: {
-        user: config.get('mail-credentials.userid'),
-        pass: config.get('mail-credentials.password')
+        user: "test@gigikart.com",
+        pass: "Test123#"
     }
 });
 
 let sendmail = (toid,sub,text,html)=>{
     return transporter.sendMail({
-        from: '"sitrain"<sitrain@siemens.com>',
+        from: 'test@gigikart.com',
         to: toid,
         subject: sub,
         text: text,

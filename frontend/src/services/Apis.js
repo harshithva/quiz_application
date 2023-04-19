@@ -85,7 +85,9 @@ const apis={
     GET_EXCEL:'/api/v1/trainer/result/download',
     MAX_MARKS_FETCH:'/api/v1/test/max/marks',
     GET_FEEDBACKS:'/api/v1/trainer/get/feedbacks',
-    CHECK_TEST_NAME:'/api/v1/test/new/name/check'
+    CHECK_TEST_NAME:'/api/v1/test/new/name/check',
+
+    IMPORT_QUESTION: '/api/v1/questions/import_questions'
 }
 
 export default apis;
